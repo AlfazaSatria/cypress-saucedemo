@@ -21,17 +21,7 @@ context('Login', () => {
             CommonPage.InventoryItems()
                 .first().as('inventoryItem')
 
-            cy.get('@inventoryItem')
-                .find('.inventory_item_name')
-                .invoke('text')
-                .its('length')
-                .should('be.gt', 1)
-
-            cy.get('@inventoryItem')
-                .find('.inventory_item_desc')
-                .invoke('text')
-                .its('length')
-                .should('be.gt', 1)
+            
 
             cy.get('@inventoryItem')
                 .find('.inventory_item_price')
@@ -57,8 +47,28 @@ context('Login', () => {
                     }
                 })
 
-            
+                CommonPage.CartButton().click()
+                CommonPage.CheckoutButton().click()
 
+                let firstName = 'Alfaza';
+                let lastname = 'Satria';
+                let postal_code= '61481';
+
+                cy.get('#first-name')
+                .type(firstName)
+                .should('have.value', firstName)
+        
+              cy.get('#last-name')
+                .type(lastname)
+                .should('have.value', lastname)
+        
+              cy.get('#postal-code')
+                .type(postal_code)
+                .should('have.value', postal_code)
+
+                CommonPage.OrderButton().click()
+                CommonPage.OrderButton().click()
+               
         })
 
 
