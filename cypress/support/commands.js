@@ -23,3 +23,14 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('getSessionStorage', (key) => {
+    cy.window().then((window) => window.sessionStorage.getItem(key))
+  })
+  
+  Cypress.Commands.add('setSessionStorage', (key, value) => {
+    cy.window().then((window) => {
+      window.sessionStorage.setItem(key, value)
+    })
+  })
+  
